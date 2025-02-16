@@ -14,6 +14,14 @@ namespace backend.Models.Data
         }
        public DbSet<Service> Services {get;set;}
         public DbSet<ServiceOptions> ServiceOptions {get;set;}
+
+        public DbSet<Staff> Staffs {get;set;}
+
+        public DbSet<StaffSchedule> StaffSchedules {get;set;}
+
+        public DbSet<Booking> Bookings {get;set;}
+
+
         
     }
 }

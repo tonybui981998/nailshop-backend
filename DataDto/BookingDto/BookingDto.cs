@@ -4,12 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using backend.Models;
 
-namespace backend.Models
+namespace backend.DataDto.BookingDto
 {
-    public class Booking
+    public class BookingDto
     {
-        [Key]
+           
         public int Id {get;set;}
 
         [Required]
@@ -24,21 +25,17 @@ namespace backend.Models
 
         [Required]
         public TimeSpan StartTime {get;set;}
+         public decimal TotalPrice { get; set; } 
 
         [Required]
 
         public TimeSpan EndTime {get;set;}
-          [Required] 
-        public decimal TotalPrice { get; set; }
 
         public DateTime CreateAt {get;set;} = DateTime.UtcNow;
 
         public int StaffId {get;set;}
 
-          [ForeignKey("StaffId")]
-        public Staff Staff {get;set;}
-
-        public List<ClientBooking> ClientBookings {get;set;} = new List<ClientBooking>();
+    public List<ClientBookingDto> bookingServices {get;set;} = new List<ClientBookingDto>();
 
 
     }

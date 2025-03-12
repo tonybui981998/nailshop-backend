@@ -136,3 +136,5 @@
 /Users/tonybui/Documents/NailsFinalProject/backend/obj/Debug/net8.0/backend.genruntimeconfig.cache
 /Users/tonybui/Documents/NailsFinalProject/backend/obj/Debug/net8.0/ref/backend.dll
 /Users/tonybui/Documents/NailsFinalProject/backend/obj/Debug/net8.0/backend.sourcelink.json
+/Users/tonybui/Documents/NailsFinalProject/backend/bin/Debug/net8.0/backend.staticwebassets.runtime.json
+/Users/tonybui/Documents/NailsFinalProject/backend/bin/Debug/net8.0/Newtonsoft.Json.dll

@@ -12,7 +12,7 @@ namespace backend.Models
         [Key]
         public int Id { get; set; }
     [Required]
-        public DateTime WorkDate { get; set; }
+        public string DayOfWeek { get; set; } 
 
         [Required]
         public TimeSpan StartTime {get;set;}

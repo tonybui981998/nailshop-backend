@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using backend.Models.Data;
 
@@ -11,9 +12,11 @@ using backend.Models.Data;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250228032512_AddClientBooking")]
+    partial class AddClientBooking
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,9 +59,6 @@ namespace backend.Migrations
 
                     b.Property<TimeSpan>("StartTime")
                         .HasColumnType("time");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -213,7 +213,7 @@ namespace backend.Migrations
             modelBuilder.Entity("backend.Models.ClientBooking", b =>
                 {
                     b.HasOne("backend.Models.Booking", "Booking")
-                        .WithMany("ClientBookings")
+                        .WithMany("BookingServices")
                         .HasForeignKey("BookingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -245,7 +245,7 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Models.Booking", b =>
                 {
-                    b.Navigation("ClientBookings");
+                    b.Navigation("BookingServices");
                 });
 
             modelBuilder.Entity("backend.Models.Service", b =>

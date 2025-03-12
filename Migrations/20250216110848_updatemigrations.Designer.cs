@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using backend.Models.Data;
 
@@ -11,9 +12,11 @@ using backend.Models.Data;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250216110848_updatemigrations")]
+    partial class updatemigrations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,36 +60,11 @@ namespace backend.Migrations
                     b.Property<TimeSpan>("StartTime")
                         .HasColumnType("time");
 
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("StaffId");
 
                     b.ToTable("Bookings");
-                });
-
-            modelBuilder.Entity("backend.Models.ClientBooking", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BookingId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("selectedService")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookingId");
-
-                    b.ToTable("ClientBookings");
                 });
 
             modelBuilder.Entity("backend.Models.Service", b =>
@@ -210,17 +188,6 @@ namespace backend.Migrations
                     b.Navigation("Staff");
                 });
 
-            modelBuilder.Entity("backend.Models.ClientBooking", b =>
-                {
-                    b.HasOne("backend.Models.Booking", "Booking")
-                        .WithMany("ClientBookings")
-                        .HasForeignKey("BookingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Booking");
-                });
-
             modelBuilder.Entity("backend.Models.ServiceOptions", b =>
                 {
                     b.HasOne("backend.Models.Service", "Service")
@@ -241,11 +208,6 @@ namespace backend.Migrations
                         .IsRequired();
 
                     b.Navigation("Staff");
-                });
-
-            modelBuilder.Entity("backend.Models.Booking", b =>
-                {
-                    b.Navigation("ClientBookings");
                 });
 
             modelBuilder.Entity("backend.Models.Service", b =>

@@ -2,8 +2,12 @@ using backend.IRepository;
 using backend.Models.Data;
 using backend.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
+// ✅ Bật logging ra console
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 builder.Services.AddControllers();
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -13,6 +17,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
      options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
      builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+     builder.Services.AddScoped<IStaffRepository ,StaffRepository>();
+     builder.Services.AddScoped<IBookingRepository,BookingRepository>();
 
      // cors
      
@@ -29,6 +35,12 @@ builder.Services.AddCors(options =>
         });
 });
 var app = builder.Build();
+app.Use(async (context, next) =>
+{
+    Console.WriteLine($"🔥 Request đến API: {context.Request.Method} {context.Request.Path}");
+    await next();
+});
+app.UseStaticFiles();
 
 
 // Configure the HTTP request pipeline.

@@ -9,8 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 builder.Services.AddControllers();
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -19,6 +18,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
      builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
      builder.Services.AddScoped<IStaffRepository ,StaffRepository>();
      builder.Services.AddScoped<IBookingRepository,BookingRepository>();
+        builder.Services.AddScoped<IFeedBackRepository,FeedBackRepository>();
 
      // cors
      

@@ -22,6 +22,7 @@ namespace backend.Models.Data
         public DbSet<Booking> Bookings {get;set;}
 
       public DbSet<ClientBooking> ClientBookings { get; set; }
+      public DbSet<CustomerFeedback> CustomerFeedbacks {get;set;}
 
 
       

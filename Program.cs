@@ -1,5 +1,6 @@
 using backend.IRepository;
 using backend.Models.Data;
+using backend.Properties;
 using backend.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
@@ -19,6 +20,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
      builder.Services.AddScoped<IStaffRepository ,StaffRepository>();
      builder.Services.AddScoped<IBookingRepository,BookingRepository>();
         builder.Services.AddScoped<IFeedBackRepository,FeedBackRepository>();
+        builder.Services.AddScoped<ICustomerRequiredRepository,CustomerRequiredRepository>();
 
      // cors
      

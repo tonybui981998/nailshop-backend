@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using backend.IRepository;
 using backend.Models;
+using backend.Models.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers
@@ -13,9 +14,11 @@ namespace backend.Controllers
     public class CustomerFeedBackController : ControllerBase
     {
         private readonly IFeedBackRepository _feedBackRepo;
-        public CustomerFeedBackController(IFeedBackRepository feedBackRepo)
+        private readonly ApplicationDbContext _context;
+        public CustomerFeedBackController(IFeedBackRepository feedBackRepo ,ApplicationDbContext context)
         {
             _feedBackRepo = feedBackRepo;
+            _context = context;
         }
         [HttpPost("createfeedback")]
         public async Task<IActionResult> CreateFeedBack([FromBody] CustomerFeedback customerFeedback){
@@ -26,6 +29,21 @@ namespace backend.Controllers
 
             await _feedBackRepo.CreateFeedBackAsync(customerFeedback);
             return Ok(new { status = "success", message = "Feedback submitted successfully." });
+        }
+        [HttpGet("allfeedback")]
+        public async Task<IActionResult> GetAllFeedBack(){
+            var allFeedBack = await _feedBackRepo.GetAllCustomerFeedBackAsync();
+          return Ok(allFeedBack);
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult>DeleteFeedBack([FromRoute] int id){
+            var checkId = await _context.CustomerFeedbacks.FindAsync(id);
+            if(checkId == null){
+                return Ok(new {status = "error",message ="sorry some thing wrong"});
+            }
+                _context.CustomerFeedbacks.Remove(checkId);
+            await _context.SaveChangesAsync();
+             return Ok(new {status = "success",message ="Delete success"});
         }
     }
 }

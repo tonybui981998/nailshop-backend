@@ -2,14 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using backend.DataDto.StaffDto;
 using backend.Models;
 
 namespace backend.IRepository
 {
-    public interface IStaffRepository
+    public interface ICustomerFeedBackRepository
     {
-        Task<List<Staff>>AllStaff();
-        Task<bool>StaffExist(int id);
+         Task<List<CustomerFeedback>> GetAllFeedBackAsync();
     }
 }

@@ -25,5 +25,21 @@ namespace backend.Controllers
         await _requiredRepo.CreateRequireAsync(customerRequired);
         return Ok(new {status ="success",message="Thank you for your inquiry"});
      }
+     [HttpGet("allrequired")]
+     public async Task<IActionResult> GetAllRequired(){
+     var allrequiries = await _requiredRepo.GetAllRequiredAsync();
+      if(allrequiries == null){
+        return Ok(new {status = "error",message ="sorry something wrong"});
+      }
+        return Ok(allrequiries);
+     }
+     [HttpDelete("{id}")]
+     public async Task<IActionResult>DeleteRequired([FromRoute] int id){
+        var respond = await _requiredRepo.DeleteRequiredAsync(id);
+        if(respond == null){
+            return Ok(new {status = "error", message ="sorry something wrong"});
+        }
+        return Ok(new {status = "success",message = "Delete success"});
+     }
     }
 }

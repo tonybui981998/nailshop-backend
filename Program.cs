@@ -21,6 +21,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
      builder.Services.AddScoped<IBookingRepository,BookingRepository>();
         builder.Services.AddScoped<IFeedBackRepository,FeedBackRepository>();
         builder.Services.AddScoped<ICustomerRequiredRepository,CustomerRequiredRepository>();
+        builder.Services.AddScoped<IUserLoginRepository ,UserLoginRepository>();
 
      // cors
      
@@ -31,7 +32,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactFrontend",
         policy =>
         {
-            policy.WithOrigins("http://localhost:5173") 
+            policy.WithOrigins("http://localhost:5173","http://localhost:5174") 
                   .AllowAnyHeader()
                   .AllowAnyMethod();
         });

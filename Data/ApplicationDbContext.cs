@@ -26,6 +26,8 @@ namespace backend.Models.Data
 
       public DbSet<CustomerRequired> CustomerRequireds {get;set;}
 
+      public DbSet<UserAccount> UserAccounts {get;set;}
+
 
       
 

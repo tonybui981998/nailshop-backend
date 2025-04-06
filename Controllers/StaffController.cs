@@ -24,5 +24,13 @@ namespace backend.Controllers
             var staffData =  staffss.Select(x=>x.ToAllStaff());
             return Ok(staffData);
         }
+        [HttpGet("admin-allstaff")]
+        public async Task<IActionResult> getAllAdminStaff(){
+            var staff = await _staffRepo.GetAllStaffAsync();
+            if(staff == null){
+                return Ok(new {status = "error",message = "sorry something wrong"});
+            }
+            return Ok(staff);
+        }
     }
 }

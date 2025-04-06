@@ -17,8 +17,14 @@ namespace backend.DataMapper
                 IsActive = staffModel.IsActive,
                 Image  = string.IsNullOrEmpty(staffModel.Image) ? null : $"{ImageBaseUrl}/{staffModel.Image}",
                 StaffScheduleDtos = staffModel.StaffSchedules.Select(x=>x.ToAllSchedule()).ToList()
-                
-
+            };
+        }
+        public static StaffAdminDto TogetAllAdminStaff (this Staff staffModel){
+            return new StaffAdminDto{
+                Id = staffModel.Id,
+                FullName = staffModel.FullName,
+                IsActive = staffModel.IsActive,
+                StaffScheduleDtos = staffModel.StaffSchedules.Select(x=>x.ToAllSchedule()).ToList()
             };
         }
     }

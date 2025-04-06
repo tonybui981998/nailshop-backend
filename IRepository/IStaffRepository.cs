@@ -11,5 +11,6 @@ namespace backend.IRepository
     {
         Task<List<Staff>>AllStaff();
         Task<bool>StaffExist(int id);
+        Task<List<StaffAdminDto>>GetAllStaffAsync();
     }
 }

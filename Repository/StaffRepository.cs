@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using backend.DataDto.StaffDto;
+using backend.DataMapper;
 using backend.IRepository;
 using backend.Models;
 using backend.Models.Data;
@@ -21,6 +23,13 @@ namespace backend.Repository
         {
             var staffs = await _context.Staffs.Include(x=>x.StaffSchedules).ToListAsync();
             return  staffs;
+        }
+
+        public async Task<List<StaffAdminDto>> GetAllStaffAsync()
+        {
+          var staff = await _context.Staffs.Include(x=>x.StaffSchedules).ToListAsync();
+          var allstaff = staff.Select(x=>x.TogetAllAdminStaff()).ToList();
+           return allstaff;
         }
 
         public Task<bool> StaffExist(int id)

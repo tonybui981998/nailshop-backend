@@ -28,6 +28,7 @@ namespace backend.Models.Data
 
       public DbSet<UserAccount> UserAccounts {get;set;}
       public DbSet<CustomSchedule> CustomSchedules {get;set;}
+      public DbSet<PayrollHistory> PayrollHistories {get;set;}
 
 
       

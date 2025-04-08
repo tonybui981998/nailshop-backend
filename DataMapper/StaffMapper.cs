@@ -24,7 +24,8 @@ namespace backend.DataMapper
                 Id = staffModel.Id,
                 FullName = staffModel.FullName,
                 IsActive = staffModel.IsActive,
-                StaffScheduleDtos = staffModel.StaffSchedules.Select(x=>x.ToAllSchedule()).ToList()
+                StaffScheduleDtos = staffModel.StaffSchedules.Select(x=>x.ToAllSchedule()).ToList(),
+                CustomerScheduleDtos = staffModel.CustomSchedules.Select(u=>u.TogetallCustomSchedule()).ToList(),
             };
         }
     }

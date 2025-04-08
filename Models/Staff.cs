@@ -27,5 +27,7 @@ namespace backend.Models
      public   List<StaffSchedule> StaffSchedules {get;set;} = new List<StaffSchedule>();
         public List<Booking> Bookings {get;set;} = new List<Booking>();
 
+        public List<CustomSchedule> CustomSchedules {get;set;} = new List<CustomSchedule>();
+
     }
 }

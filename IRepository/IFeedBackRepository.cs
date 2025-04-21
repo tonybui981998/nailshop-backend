@@ -11,5 +11,7 @@ namespace backend.IRepository
     {
         Task<CustomerFeedback>CreateFeedBackAsync(CustomerFeedback customerFeedback);
         Task<List<FeedBackDto>> GetAllCustomerFeedBackAsync();
+
+        Task<CustomerFeedback>DeleteCustomerFeedBack(int id);
     }
 }

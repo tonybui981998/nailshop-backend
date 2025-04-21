@@ -13,6 +13,8 @@ namespace backend.DataDto.ServiceOption
         public string Name { get; set; } = string.Empty;
      
         public string Duration { get; set; } = string.Empty;
+
+       public string Color { get; set; }
     
           public decimal? Price { get; set; }
             public int ServiceId { get; set; }

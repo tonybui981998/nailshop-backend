@@ -37,13 +37,11 @@ namespace backend.Controllers
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult>DeleteFeedBack([FromRoute] int id){
-            var checkId = await _context.CustomerFeedbacks.FindAsync(id);
-            if(checkId == null){
-                return Ok(new {status = "error",message ="sorry some thing wrong"});
+            var result = await _feedBackRepo.DeleteCustomerFeedBack(id);
+            if(result == null){
+                return Ok(new {status = "error",message = "sorry something wrong"});
             }
-                _context.CustomerFeedbacks.Remove(checkId);
-            await _context.SaveChangesAsync();
-             return Ok(new {status = "success",message ="Delete success"});
+            return Ok(new {status = "success",message = "Delete success"});
         }
     }
 }

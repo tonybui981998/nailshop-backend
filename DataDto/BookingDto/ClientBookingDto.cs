@@ -5,13 +5,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace backend.DataDto.BookingDto
+namespace backend.DataDto.Bookingdto
 {
     public class ClientBookingDto
     {
         
         
          public string SelectedService { get; set; }
+
+         
+         public string duration {get;set;}
 
          public int BookingId { get; set; }
       

@@ -16,8 +16,9 @@ namespace backend.Models
         [Required]
         public string Duration { get; set; }
         [Required]
+        public string Color {get;set;}
           public decimal? Price { get; set; }
-[ForeignKey("Service")]
+        [ForeignKey("Service")]
           public int ServiceId { get; set; }
 
           public Service Service { get; set; }

@@ -26,6 +26,18 @@ namespace backend.Repository
              return customerFeedback;
         }
 
+        public async Task<CustomerFeedback> DeleteCustomerFeedBack(int id)
+        {
+           var checkId = await _context.CustomerFeedbacks.FirstOrDefaultAsync(x=>x.Id == id);
+           if(checkId == null){
+            return null;
+           }
+            _context.CustomerFeedbacks.Remove(checkId);
+            await _context.SaveChangesAsync();
+            return checkId;
+
+        }
+
         public async Task<List<FeedBackDto>> GetAllCustomerFeedBackAsync()
         {
            return await _context.CustomerFeedbacks.Select(x=>x.ToGetAllFeedBack()).ToListAsync();

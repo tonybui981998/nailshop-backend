@@ -14,6 +14,9 @@ namespace backend.Models
          public int Id { get; set; }
          public string selectedService { get; set; }
 
+         public string duration {get;set;}
+
+
         [ForeignKey("Booking")]
          public int BookingId { get; set; }
          [JsonIgnore]

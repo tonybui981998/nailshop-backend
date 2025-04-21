@@ -22,6 +22,19 @@ namespace backend.Controllers
             _staffRepo = staffRepo;
         }
 
+        [HttpGet("payment-history")]
+        public async Task<IActionResult> GetAllhistorypay(){
+            var alldata = await _payrollRepo.GetAllPayrollHistoryAsync();
+            if(alldata == null){
+                return Ok(new {status ="error",message ="sorry something went wrong"});
+            }
+           var dataDto = alldata.Select(x=>x.TogetAllPayrollHistory()).ToList();
+           if(dataDto == null){
+            return Ok(new {status = "error",message ="sorry no data found"});
+           }
+            return Ok(dataDto);
+        }
+
         [HttpPost("create-payroll")]
         public async Task<IActionResult>CreatePayroll([FromBody] PayrollHistoryDto payrollHistoryDto){
             if(payrollHistoryDto == null){

@@ -20,6 +20,8 @@ namespace backend.DataDto.StaffDto
         public string Image { get; set; } 
 
         public List<StaffScheduleDto> StaffScheduleDtos { get; set; } 
+       
+        
 
         
     }

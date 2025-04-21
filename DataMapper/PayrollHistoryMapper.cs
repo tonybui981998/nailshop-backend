@@ -12,7 +12,6 @@ namespace backend.DataMapper
     {   
         public static PayrollHistory ToCreatePayrollHistory (this PayrollHistoryDto payrollHistoryDto){
             return new PayrollHistory{
-                Id = payrollHistoryDto.Id,
                 StaffId = payrollHistoryDto.StaffId,
                 StartDate = payrollHistoryDto.StartDate,
                 EndDate = payrollHistoryDto.EndDate,
@@ -20,6 +19,17 @@ namespace backend.DataMapper
                 HourlyRate = payrollHistoryDto.HourlyRate,
                 TotalPay = payrollHistoryDto.TotalPay,
                 IsPaid = payrollHistoryDto.IsPaid
+            };
+            
+        }
+        public static PayrollHistoryGetAllDto TogetAllPayrollHistory (this PayrollHistory payrollHistory){
+            return new PayrollHistoryGetAllDto{
+                StaffId = payrollHistory.StaffId,
+                StartDate = payrollHistory.StartDate,
+                EndDate = payrollHistory.EndDate,
+                TotalHours = payrollHistory.TotalHours,
+                HourlyRate = payrollHistory.HourlyRate,
+                TotalPay = payrollHistory.TotalPay
             };
         }
     }

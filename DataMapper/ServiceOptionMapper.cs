@@ -18,5 +18,12 @@ namespace backend.DataMapper
                 ServiceId = optionmodel.ServiceId
             };
         }
+        public static ServiceOptionColor GetAdminOptionColor (this ServiceOptions serviceOptions){
+            return new ServiceOptionColor{
+                Name = serviceOptions.Name,
+                Color = serviceOptions.Color
+            };
+        }
+
     }
 }

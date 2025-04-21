@@ -27,7 +27,7 @@ namespace backend.Repository
 
         public async Task<List<StaffAdminDto>> GetAllStaffAsync()
         {
-          var staff = await _context.Staffs.Include(x=>x.StaffSchedules).Include(u=>u.CustomSchedules).ToListAsync();
+          var staff = await _context.Staffs.Include(x=>x.StaffSchedules).Include(u=>u.CustomSchedules).Include(c=>c.Bookings).ThenInclude(d=>d.ClientBookings).ToListAsync();
           var allstaff = staff.Select(x=>x.TogetAllAdminStaff()).ToList();
            return allstaff;
         }

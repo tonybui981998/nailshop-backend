@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using backend.DataDto.BookingDto;
+using backend.DataDto.Bookingdto;
 using backend.DataMapper;
 using backend.IRepository;
 using Microsoft.AspNetCore.Http.HttpResults;

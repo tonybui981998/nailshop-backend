@@ -10,5 +10,6 @@ namespace backend.IRepository
     public interface IPayrollHistoryRepository
     {
         Task<PayrollHistory> CreatePayRollAsync( PayrollHistory payrollHistory);
+        Task<List<PayrollHistory>>GetAllPayrollHistoryAsync();
     }
 }

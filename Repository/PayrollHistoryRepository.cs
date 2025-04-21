@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using backend.DataDto.PayrollHistory;
+using backend.DataMapper;
 using backend.IRepository;
 using backend.Models;
 using backend.Models.Data;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Repository
 {
@@ -21,8 +23,16 @@ namespace backend.Repository
         public async Task<PayrollHistory> CreatePayRollAsync(PayrollHistory payrollHistory)
         {
           await _context.PayrollHistories.AddAsync(payrollHistory);
-          _context.SaveChangesAsync();
+         await _context.SaveChangesAsync();
           return payrollHistory;
+        }
+
+        public async Task<List<PayrollHistory>> GetAllPayrollHistoryAsync()
+        {
+          return await _context.PayrollHistories.ToListAsync();
+          
+        
+        
         }
     }
 }

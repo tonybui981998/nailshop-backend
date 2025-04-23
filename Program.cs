@@ -24,6 +24,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
         builder.Services.AddScoped<ICustomerRequiredRepository,CustomerRequiredRepository>();
         builder.Services.AddScoped<IUserLoginRepository ,UserLoginRepository>();
              builder.Services.AddScoped< IPayrollHistoryRepository,PayrollHistoryRepository>();
+                builder.Services.AddScoped< IClientBookingRepository,ClientBookingRepository>();
 
      // cors
      

@@ -7,6 +7,7 @@ using backend.DataMapper;
 using backend.IRepository;
 using backend.Models;
 using backend.Models.Data;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.Repository
@@ -48,5 +49,17 @@ namespace backend.Repository
            var allBooking = await _context.Bookings.Select(x=>x.ToGetAllBooking()).ToListAsync();
            return allBooking;
         }
+
+    public async Task<Booking> IDExistAsync(int id)
+    {
+      if(id == null){
+        return null;
+      }
+      var result = await _context.Bookings.FindAsync(id);
+      if(result == null){
+        return null;
+      }
+      return result;
     }
+  }
 }

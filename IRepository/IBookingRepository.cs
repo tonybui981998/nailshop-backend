@@ -12,5 +12,7 @@ namespace backend.IRepository
         Task<Booking>CreateBookingAsync(Booking booking ,List<ClientBooking> clientBookings);
         Task<List<BookingDto>>GetBookingTime();
         Task<Booking>DeleteBookingAsync(int id);
+
+        Task<Booking>IDExistAsync(int id);
     }
 }

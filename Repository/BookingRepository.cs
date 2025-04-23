@@ -32,7 +32,18 @@ namespace backend.Repository
             return booking;
         }
 
-        public async Task<List<BookingDto>> GetBookingTime()
+    public async Task<Booking> DeleteBookingAsync(int id)
+    {
+    var  checkId = await _context.Bookings.Include(b=>b.ClientBookings).Include(d=>d.Staff) .FirstOrDefaultAsync(c=>c.Id == id);
+      if(checkId == null){
+        return null;
+      }
+    _context.Bookings.Remove(checkId);
+    await _context.SaveChangesAsync();
+    return checkId;
+    }
+
+    public async Task<List<BookingDto>> GetBookingTime()
         {
            var allBooking = await _context.Bookings.Select(x=>x.ToGetAllBooking()).ToListAsync();
            return allBooking;

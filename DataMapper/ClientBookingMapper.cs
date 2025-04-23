@@ -13,6 +13,7 @@ namespace backend.DataMapper
             return new ClientBooking{
                 selectedService = clientModel.SelectedService,
                      duration = clientModel.duration,
+                     price = clientModel.price,
                 BookingId = clientModel.BookingId
             };
         }
@@ -20,6 +21,7 @@ namespace backend.DataMapper
             return new ClientBookingDto {
                 SelectedService = clientBooking.selectedService,
                 duration = clientBooking.duration,
+                price = clientBooking.price,
                 BookingId = clientBooking.BookingId,
                 
                 

@@ -16,6 +16,8 @@ namespace backend.DataDto.Bookingdto
          
          public string duration {get;set;}
 
+         public int price { get; set; }
+
          public int BookingId { get; set; }
       
     }

@@ -138,3 +138,6 @@
 /Users/tonybui/Documents/NailsFinalProject/backend/obj/Debug/net8.0/backend.sourcelink.json
 /Users/tonybui/Documents/NailsFinalProject/backend/bin/Debug/net8.0/backend.staticwebassets.runtime.json
 /Users/tonybui/Documents/NailsFinalProject/backend/bin/Debug/net8.0/Newtonsoft.Json.dll
+/Users/tonybui/Documents/NailsFinalProject/backend/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/Users/tonybui/Documents/NailsFinalProject/backend/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
+/Users/tonybui/Documents/NailsFinalProject/backend/bin/Debug/net8.0/Microsoft.Extensions.Options.dll

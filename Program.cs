@@ -1,3 +1,4 @@
+using backend.Hubs;
 using backend.IRepository;
 using backend.Models.Data;
 using backend.Properties;
@@ -35,9 +36,11 @@ builder.Services.AddCors(options =>
         {
             policy.WithOrigins("http://localhost:5173","http://localhost:5174") 
                   .AllowAnyHeader()
-                  .AllowAnyMethod();
+                  .AllowAnyMethod()
+                 .AllowCredentials();
         });
 });
+builder.Services.AddSignalR();
 var app = builder.Build();
 app.Use(async (context, next) =>
 {
@@ -57,6 +60,7 @@ app.UseCors("AllowReactFrontend");
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+app.MapHub<BookingHubs>("/bookingHub");
 app.Run();
 
 

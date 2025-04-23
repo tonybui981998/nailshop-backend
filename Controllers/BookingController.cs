@@ -35,6 +35,14 @@ namespace backend.Controllers
             var alllBooking = await _bookingRepo.GetBookingTime();
             return Ok(alllBooking);
         }
+        [HttpDelete("delete-appointent/{id}")]
+        public async Task<IActionResult> DeleteAppointment([FromRoute] int id){
+            var result = await _bookingRepo.DeleteBookingAsync(id);
+            if(result == null){
+                return Ok(new {status = "error",message ="sorry something wrong"});
+            }
+            return Ok(new {status = "success",message ="delete success"});
+        }
         
     }
 }

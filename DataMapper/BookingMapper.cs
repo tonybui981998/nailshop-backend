@@ -18,7 +18,8 @@ namespace backend.DataMapper
                 StartTime = bookingModel.StartTime,
                 EndTime = bookingModel.EndTime,
                 StaffId = bookingModel.StaffId,
-                TotalPrice = bookingModel.TotalPrice
+                TotalPrice = bookingModel.TotalPrice,
+                BookingNote = bookingModel.BookingNote
                 
             };
         }
@@ -33,8 +34,10 @@ namespace backend.DataMapper
                 EndTime = bookingModel.EndTime,
                 StaffId = bookingModel.StaffId,
                 TotalPrice = bookingModel.TotalPrice,
+                BookingNote = bookingModel.BookingNote,
                 bookingServices = bookingModel.ClientBookings.Select(x=>x.TogetallService()).ToList()
             };
         }
+      
     }
 }

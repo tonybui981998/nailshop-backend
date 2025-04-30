@@ -30,6 +30,9 @@ namespace backend.Models
         public TimeSpan EndTime {get;set;}
           [Required] 
         public decimal TotalPrice { get; set; }
+        
+        public string? BookingNote { get; set; }
+
 
         public DateTime CreateAt {get;set;} = DateTime.UtcNow;
 

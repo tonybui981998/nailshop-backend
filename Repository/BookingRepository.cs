@@ -61,5 +61,19 @@ namespace backend.Repository
       }
       return result;
     }
+
+    public async Task<Booking> UpdateBooking( ClientUpdateDto clientUpdateDto)
+    {
+      var checkId = await _context.Bookings.FindAsync(clientUpdateDto.Id);
+      if(checkId == null){
+        return null;
+      }
+    checkId.CustomerName = clientUpdateDto.CustomerName;
+    checkId.CustomerPhone = clientUpdateDto.CustomerPhone;
+    checkId.Email = clientUpdateDto.Email;
+    await _context.SaveChangesAsync();
+    return checkId;
+
+    }
   }
 }

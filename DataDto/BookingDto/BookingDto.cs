@@ -27,7 +27,7 @@ namespace backend.DataDto.Bookingdto
         public TimeSpan StartTime {get;set;}
          public decimal TotalPrice { get; set; } 
 
-       
+           public string? BookingNote { get; set; }
 
         public TimeSpan EndTime {get;set;}
 

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using backend.DataDto.Bookingdto;
 using backend.DataMapper;
 using backend.IRepository;
+using backend.Models.Data;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +16,7 @@ namespace backend.Controllers
     public class BookingController :ControllerBase
     {
         private readonly IBookingRepository _bookingRepo;
+    
         public BookingController(IBookingRepository bookingRepo)
         {
             _bookingRepo = bookingRepo;
@@ -42,6 +44,14 @@ namespace backend.Controllers
                 return Ok(new {status = "error",message ="sorry something wrong"});
             }
             return Ok(new {status = "success",message ="delete success"});
+        }
+        [HttpPut("update-info")]
+        public async Task<IActionResult>Update([FromBody] ClientUpdateDto clientUpdateDto){
+            var checkResult = await _bookingRepo.UpdateBooking(clientUpdateDto);
+            if(checkResult == null){
+            return Ok(new {status = "error",message ="sorry something wrong"});
+            }
+            return Ok(new {status = "success",message ="update success"});
         }
         
     }

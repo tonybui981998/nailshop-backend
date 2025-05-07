@@ -15,9 +15,9 @@ namespace backend.Models
 
         public int Discount { get; set; }
 
-        public string VoucherCode {get;set;}
+        public string? VoucherCode {get;set;}
 
-        public int VoucherAmount{get;set;}
+        public int? VoucherAmount{get;set;}
 
         public decimal TotalPay {get;set;}
 

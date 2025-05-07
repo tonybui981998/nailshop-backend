@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace backend.Models
@@ -18,7 +19,7 @@ namespace backend.Models
         public string UsedBy { get; set; }
 
         public int? BookingConfirmId { get; set; }
-
+    [JsonIgnore] 
         public BookingConfirm BookingConfirm{get;set;}
 
      

@@ -30,6 +30,14 @@ namespace backend.Models.Data
       public DbSet<CustomSchedule> CustomSchedules {get;set;}
       public DbSet<PayrollHistory> PayrollHistories {get;set;}
 
+      public DbSet<Voucher> Vouchers{get;set;}
+
+      public DbSet<VoucherUsage> VoucherUsages {get;set;}
+      
+      public DbSet<BookingConfirm> BookingConfirms {get;set;}
+
+      public DbSet<ConfirmService> ConfirmServices {get;set;}
+
 
       
 

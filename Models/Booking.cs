@@ -41,6 +41,8 @@ namespace backend.Models
           [ForeignKey("StaffId")]
         public Staff Staff {get;set;}
 
+        public BookingConfirm BookingConfirm {get;set;}
+
         public List<ClientBooking> ClientBookings {get;set;} = new List<ClientBooking>();
 
 

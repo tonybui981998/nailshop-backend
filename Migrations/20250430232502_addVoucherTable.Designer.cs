@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using backend.Models.Data;
 
@@ -11,9 +12,11 @@ using backend.Models.Data;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250430232502_addVoucherTable")]
+    partial class addVoucherTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,45 +73,6 @@ namespace backend.Migrations
                     b.ToTable("Bookings");
                 });
 
-            modelBuilder.Entity("backend.Models.BookingConfirm", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BookingId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("BookingStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Discount")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TotalPay")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("VoucherAmount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("VoucherCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookingId")
-                        .IsUnique();
-
-                    b.ToTable("BookingConfirms");
-                });
-
             modelBuilder.Entity("backend.Models.ClientBooking", b =>
                 {
                     b.Property<int>("Id")
@@ -136,35 +100,6 @@ namespace backend.Migrations
                     b.HasIndex("BookingId");
 
                     b.ToTable("ClientBookings");
-                });
-
-            modelBuilder.Entity("backend.Models.ConfirmService", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BookingConfirmId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("duration")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("price")
-                        .HasColumnType("int");
-
-                    b.Property<string>("selectedService")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookingConfirmId");
-
-                    b.ToTable("ConfirmServices");
                 });
 
             modelBuilder.Entity("backend.Models.CustomSchedule", b =>
@@ -471,7 +406,7 @@ namespace backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("BookingConfirmId")
+                    b.Property<int?>("BookingId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("UsedAmount")
@@ -489,9 +424,7 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BookingConfirmId")
-                        .IsUnique()
-                        .HasFilter("[BookingConfirmId] IS NOT NULL");
+                    b.HasIndex("BookingId");
 
                     b.HasIndex("VoucherId");
 
@@ -509,17 +442,6 @@ namespace backend.Migrations
                     b.Navigation("Staff");
                 });
 
-            modelBuilder.Entity("backend.Models.BookingConfirm", b =>
-                {
-                    b.HasOne("backend.Models.Booking", "Booking")
-                        .WithOne("BookingConfirm")
-                        .HasForeignKey("backend.Models.BookingConfirm", "BookingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Booking");
-                });
-
             modelBuilder.Entity("backend.Models.ClientBooking", b =>
                 {
                     b.HasOne("backend.Models.Booking", "Booking")
@@ -529,17 +451,6 @@ namespace backend.Migrations
                         .IsRequired();
 
                     b.Navigation("Booking");
-                });
-
-            modelBuilder.Entity("backend.Models.ConfirmService", b =>
-                {
-                    b.HasOne("backend.Models.BookingConfirm", "BookingConfirm")
-                        .WithMany("ConfirmServices")
-                        .HasForeignKey("BookingConfirmId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BookingConfirm");
                 });
 
             modelBuilder.Entity("backend.Models.CustomSchedule", b =>
@@ -588,9 +499,9 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Models.VoucherUsage", b =>
                 {
-                    b.HasOne("backend.Models.BookingConfirm", "BookingConfirm")
-                        .WithOne("VoucherUsage")
-                        .HasForeignKey("backend.Models.VoucherUsage", "BookingConfirmId");
+                    b.HasOne("backend.Models.Booking", "Booking")
+                        .WithMany()
+                        .HasForeignKey("BookingId");
 
                     b.HasOne("backend.Models.Voucher", "Voucher")
                         .WithMany("VoucherUsages")
@@ -598,25 +509,14 @@ namespace backend.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("BookingConfirm");
+                    b.Navigation("Booking");
 
                     b.Navigation("Voucher");
                 });
 
             modelBuilder.Entity("backend.Models.Booking", b =>
                 {
-                    b.Navigation("BookingConfirm")
-                        .IsRequired();
-
                     b.Navigation("ClientBookings");
-                });
-
-            modelBuilder.Entity("backend.Models.BookingConfirm", b =>
-                {
-                    b.Navigation("ConfirmServices");
-
-                    b.Navigation("VoucherUsage")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("backend.Models.Service", b =>

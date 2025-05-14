@@ -10,6 +10,7 @@ namespace backend.IRepository
     public interface  IBookingConfirmRepository
     {
         Task <BookingConfirm> CreateBookingConfirmAsync(BookingConfirm bookingConfirm,List<ConfirmService> confirmServices);
+        Task <BookingConfirm>CheckExistAsync (int id);
         
     }
 }

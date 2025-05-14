@@ -14,6 +14,6 @@ namespace backend.DataDto.ConfirmService
         public int price{get;set;}
 
         
-         public int BookingConfirmId { get; set; }
+       //  public int BookingConfirmId { get; set; }
     }
 }

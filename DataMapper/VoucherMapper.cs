@@ -11,6 +11,7 @@ namespace backend.DataMapper
     {
         public static VoucherRepondDto TogetCheckVoucher(this Voucher voucher){
             return new VoucherRepondDto{
+                Id = voucher.Id,
                 TotalAmount = voucher.TotalAmount,
                 RemainingAmount = voucher.RemainingAmount
             };

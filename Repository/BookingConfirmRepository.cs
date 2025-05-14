@@ -6,6 +6,8 @@ using backend.DataDto.BookingConfirm;
 using backend.IRepository;
 using backend.Models;
 using backend.Models.Data;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Repository
 {
@@ -16,6 +18,17 @@ namespace backend.Repository
     {
         _context = context;
     }
+
+    public async Task<BookingConfirm> CheckExistAsync(int id)
+    {
+      var checkId = await _context.BookingConfirms.FirstOrDefaultAsync(x=>x.BookingId == id);
+      if(checkId == null){
+        return null;
+      }else{
+        return checkId;
+      }
+    }
+
     public async Task<BookingConfirm> CreateBookingConfirmAsync(BookingConfirm  bookingConfirm, List<ConfirmService> confirmServices)
     {
       await _context.BookingConfirms.AddAsync(bookingConfirm);

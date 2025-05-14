@@ -14,7 +14,7 @@ namespace backend.DataMapper
                 selectedService = confirmServiceDto.selectedService,
                 duration = confirmServiceDto.duration,
                 price = confirmServiceDto.price,
-                BookingConfirmId = confirmServiceDto.BookingConfirmId,
+              //  BookingConfirmId = confirmServiceDto.BookingConfirmId,
                 
             
             };

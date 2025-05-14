@@ -14,7 +14,7 @@ namespace backend.DataMapper
                 VoucherId = voucherUsageDto.VoucherId,
                 UsedAmount = voucherUsageDto.UsedAmount,
                 UsedBy = voucherUsageDto.UsedBy,
-                BookingConfirmId = voucherUsageDto.BookingConfirmId
+               BookingConfirmId = voucherUsageDto.BookingConfirmId
             };
         }
     }

@@ -13,6 +13,6 @@ namespace backend.DataDto.VoucherUsage
 
                   public string UsedBy { get; set; }
 
-                    public int? BookingConfirmId { get; set; }
+                   public int? BookingConfirmId { get; set; }
     }
 }

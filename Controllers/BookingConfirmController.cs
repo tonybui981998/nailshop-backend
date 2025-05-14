@@ -32,7 +32,7 @@ namespace backend.Controllers
             var createBookingConfirm = confirmcheckOutDto.BookingConfirmDto.TogetConfirmBooking();
             var confirmService = confirmcheckOutDto.BookingConfirmDto.Service.Select(x=>x.TogetConfirmService()).ToList();
             var creatBooking = await _bookingRepo.CreateBookingConfirmAsync(createBookingConfirm,confirmService);
-            if(confirmcheckOutDto.BookingConfirmDto.VoucherCode !=null){
+            if(confirmcheckOutDto.BookingConfirmDto?.VoucherCode !=null){
                 var check = await _voucherRepo.CheckVoucherAsync(confirmcheckOutDto.BookingConfirmDto.VoucherCode,confirmcheckOutDto.BookingConfirmDto.RemainingMoney);
                 if(check ==null){
                     return BadRequest("sorry something wrong");
@@ -49,6 +49,14 @@ namespace backend.Controllers
 
             }
             return Ok("success");
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> CheckBooking([FromRoute] int id){
+            var check = await _bookingRepo.CheckExistAsync(id);
+            if(check == null){
+                return Ok(new {status = "notfound",message ="sorry Id not found"});
+            }
+            return Ok(new {status = "success",message ="success"});
         }
         
     }

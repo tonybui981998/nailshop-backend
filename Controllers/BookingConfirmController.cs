@@ -58,6 +58,13 @@ namespace backend.Controllers
             }
             return Ok(new {status = "success",message ="success"});
         }
-        
+        [HttpGet("get-bookingconfirm")]
+        public async Task<IActionResult> GetBookingConfirm(){
+            var result = await _bookingRepo.GetAllBookingConfirmAsync();
+            if(result == null){
+                return Ok(new {status ="error",message ="sorry something wrong"});
+            }
+            return Ok(result);
+        }
     }
 }

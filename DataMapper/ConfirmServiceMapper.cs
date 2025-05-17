@@ -16,7 +16,15 @@ namespace backend.DataMapper
                 price = confirmServiceDto.price,
               //  BookingConfirmId = confirmServiceDto.BookingConfirmId,
                 
+            };
             
+        }
+        public static ConfirmServiceCheckDto TogetAllConfirmService (this ConfirmService confirmService){
+            return new ConfirmServiceCheckDto{
+                selectedService = confirmService.selectedService,
+                duration = confirmService.duration,
+                price = confirmService.price,
+                BookingConfirmId = confirmService.BookingConfirmId,
             };
         }
     }

@@ -11,6 +11,8 @@ namespace backend.IRepository
     {
         Task <BookingConfirm> CreateBookingConfirmAsync(BookingConfirm bookingConfirm,List<ConfirmService> confirmServices);
         Task <BookingConfirm>CheckExistAsync (int id);
+
+        Task<List<BookingcheckConfirmDto>> GetAllBookingConfirmAsync();
         
     }
 }

@@ -36,6 +36,7 @@ namespace backend.DataDto.Bookingdto
         public int StaffId {get;set;}
 
     public List<ClientBookingDto> bookingServices {get;set;} = new List<ClientBookingDto>();
+    
 
 
     }

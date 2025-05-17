@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using backend.DataDto.BookingConfirm;
+using backend.DataMapper;
 using backend.IRepository;
 using backend.Models;
 using backend.Models.Data;
@@ -41,6 +42,12 @@ namespace backend.Repository
       await _context.SaveChangesAsync();
       return bookingConfirm;
 
+    }
+
+    public async Task<List<BookingcheckConfirmDto>> GetAllBookingConfirmAsync()
+    {
+ var result = await _context.BookingConfirms.Include(x=>x.ConfirmServices).Select(x=>x.ToGetAllConfirmBooking()).ToListAsync();
+  return result;
     }
   }
 }

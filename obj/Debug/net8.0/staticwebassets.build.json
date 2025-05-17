@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "V32hA7HIu3B5FzQodFdUmySRmCFX6RVJz8B2pt9RreM=",
+  "Hash": "/Y9txIyfLZERLQltEsbW4crzozRDtOSrTl4QZDOjbwo=",
   "Source": "backend",
   "BasePath": "_content/backend",
   "Mode": "Default",
@@ -34,6 +34,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Image/bubu.png"
+    },
+    {
+      "Identity": "/Users/tonybui/Documents/NailsFinalProject/backend/wwwroot/Image/image.png",
+      "SourceId": "backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/tonybui/Documents/NailsFinalProject/backend/wwwroot/",
+      "BasePath": "_content/backend",
+      "RelativePath": "Image/image.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Image/image.png"
     }
   ]
 }

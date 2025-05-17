@@ -22,6 +22,10 @@ namespace backend.Models
         public decimal TotalPay {get;set;}
 
         public int BookingId{get;set;}
+
+        public string CusName { get; set; }
+
+        public  string CusPhone { get; set; }
         public Booking Booking {get;set;}
 
         public VoucherUsage VoucherUsage{get;set;}

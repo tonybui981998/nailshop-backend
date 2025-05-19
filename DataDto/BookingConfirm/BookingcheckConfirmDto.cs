@@ -15,10 +15,14 @@ namespace backend.DataDto.BookingConfirm
           public decimal TotalPay {get;set;}
           public int BookingId{get;set;}
 
-
           public string CusName{get;set;}
 
           public string CusPhone {get;set;}
+            public TimeSpan? StartTime {get;set;}
+
+          public TimeSpan? EndTime {get;set;}
+
+          public DateTime? BookingDate {get;set;}
 
           public List<ConfirmServiceCheckDto> Service{get;set;} = new List<ConfirmServiceCheckDto>();
     }

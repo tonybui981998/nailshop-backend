@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using backend.Models.Data;
 
@@ -11,9 +12,11 @@ using backend.Models.Data;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250519140300_bokingconfirmTableupdate")]
+    partial class bokingconfirmTableupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,11 +105,11 @@ namespace backend.Migrations
                     b.Property<int>("Discount")
                         .HasColumnType("int");
 
-                    b.Property<TimeSpan?>("EndTime")
-                        .HasColumnType("time");
+                    b.Property<DateTime?>("EndTime")
+                        .HasColumnType("datetime2");
 
-                    b.Property<TimeSpan?>("StartTime")
-                        .HasColumnType("time");
+                    b.Property<DateTime?>("StartTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<decimal>("TotalPay")
                         .HasColumnType("decimal(18,2)");

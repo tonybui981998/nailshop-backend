@@ -26,6 +26,12 @@ namespace backend.Models
         public string CusName { get; set; }
 
         public  string CusPhone { get; set; }
+        public DateTime? BookingDate {get;set;}
+
+         public TimeSpan? StartTime {get;set;}
+
+          public TimeSpan? EndTime {get;set;}
+          
         public Booking Booking {get;set;}
 
         public VoucherUsage VoucherUsage{get;set;}

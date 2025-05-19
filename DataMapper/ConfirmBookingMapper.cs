@@ -9,7 +9,7 @@ namespace backend.DataMapper
 {
     public static class ConfirmBookingMapper
     {
-        // for create
+        // for create for book next
         public static BookingConfirm TogetConfirmBooking (this BookingConfirmDto bookingConfirmDto){
             return new BookingConfirm {
                 VoucherAmount = bookingConfirmDto.VoucherAmount,
@@ -20,6 +20,9 @@ namespace backend.DataMapper
                 BookingStatus = bookingConfirmDto.BookingStatus,
                 CusName = bookingConfirmDto.CusName,
                 CusPhone = bookingConfirmDto.CusPhone,
+                 BookingDate = bookingConfirmDto.BookingDate,
+                 StartTime = bookingConfirmDto.StartTime,
+                 EndTime = bookingConfirmDto.EndTime,
                 ConfirmServices = bookingConfirmDto.Service.Select(s=>s.TogetConfirmService()).ToList()
             };
         }
@@ -34,6 +37,9 @@ namespace backend.DataMapper
             BookingId = bookingConfirm.BookingId,
             CusName = bookingConfirm.CusName,
             CusPhone = bookingConfirm.CusPhone,
+            BookingDate = bookingConfirm.BookingDate,
+            StartTime = bookingConfirm.StartTime,
+            EndTime = bookingConfirm.EndTime,
             Service = bookingConfirm.ConfirmServices.Select(x=>x.TogetAllConfirmService()).ToList()
           
         };

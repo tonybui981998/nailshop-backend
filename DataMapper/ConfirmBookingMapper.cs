@@ -23,7 +23,7 @@ namespace backend.DataMapper
                  BookingDate = bookingConfirmDto.BookingDate,
                  StartTime = bookingConfirmDto.StartTime,
                  EndTime = bookingConfirmDto.EndTime,
-                ConfirmServices = bookingConfirmDto.Service.Select(s=>s.TogetConfirmService()).ToList()
+               // ConfirmServices = bookingConfirmDto.Service.Select(s=>s.TogetConfirmService()).ToList()
             };
         }
         // get confirmbooking

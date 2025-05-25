@@ -17,7 +17,6 @@ namespace backend.Models
 
         public bool IsActive { get; set; } = true;
 
-        public DateTime? ExpireDate { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 

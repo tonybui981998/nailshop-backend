@@ -11,5 +11,12 @@ namespace backend.IRepository
     {
         Task<Voucher>CheckExistAsync(VoucherCheckDto voucherCheckDto);
         Task<Voucher>CheckVoucherAsync(string code , decimal RemainingAmount);
+
+        Task<Voucher>CheckVoucherAutoAsync(string code);
+        Task<string> GenerateCodeAsync(int length = 8);
+
+        Task<Voucher>GetAuoGenetaCodeAsync(GetVoucherCodeDto getVoucherCodeDto);
+
+        
     }
 }

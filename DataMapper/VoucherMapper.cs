@@ -16,5 +16,13 @@ namespace backend.DataMapper
                 RemainingAmount = voucher.RemainingAmount
             };
         }
+        public static Voucher ToSaveVoucher (this GetVoucherCodeDto getVoucherCodeDto,string code){
+            return new Voucher{
+                Code = code,
+                TotalAmount = getVoucherCodeDto.TotalAmount,
+                RemainingAmount = getVoucherCodeDto.TotalAmount
+            };
+        }
+       
     }
 }

@@ -8,6 +8,7 @@ using backend.IRepository;
 using backend.Models;
 using backend.Models.Data;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
@@ -45,5 +46,47 @@ namespace backend.Repository
      await _context.SaveChangesAsync();
       return checkVoucher;
     }
+
+    public async Task<Voucher> CheckVoucherAutoAsync(string code)
+    {
+      var checkVOucher = await _context.Vouchers.FirstOrDefaultAsync(x=>x.Code == code);
+      if(checkVOucher == null){
+        return null;
+      }
+      
+      return checkVOucher;
+    }
+
+    public  Task<string> GenerateCodeAsync(int length = 8)
+    {
+      string character = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      Random random = new Random();
+      string code ="";
+      for(int i=0 ;i <length;i++){
+        int index =  random.Next(character.Length);
+        code +=character[index];
+      }
+     return Task.FromResult(code);
+    }
+
+    public  async Task<Voucher> GetAuoGenetaCodeAsync(GetVoucherCodeDto getVoucherCodeDto)
+    {
+      int maxattempt = 11;
+      int attempt = 0;
+      while(attempt < maxattempt){
+        var getCode = await GenerateCodeAsync();
+        if(getCode == null){
+          throw new Exception("Sorry generate code failed");
+        }
+        var checkExist = await CheckVoucherAutoAsync(getCode);
+        if(checkExist == null){
+          var createVoucher =  getVoucherCodeDto.ToSaveVoucher(getCode);
+         await _context.Vouchers.AddAsync(createVoucher);
+         return createVoucher;
+        }
+             attempt ++;
+      }
+      throw new Exception ("Please double check db before contine");
   }
+}
 }

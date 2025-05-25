@@ -28,5 +28,6 @@ public async Task<ActionResult<VoucherRepondDto>> CheckVoucher([FromBody] Vouche
     var respond = check.TogetCheckVoucher();
     return Ok(respond);
 }
+    
     }
 }

@@ -28,6 +28,23 @@ public async Task<ActionResult<VoucherRepondDto>> CheckVoucher([FromBody] Vouche
     var respond = check.TogetCheckVoucher();
     return Ok(respond);
 }
+[HttpPost("confirm-voucher")]
+        public async Task<IActionResult>SendVoucherToCustomer([FromBody]GetVoucherCodeDto getVoucherCodeDto){
+            if(getVoucherCodeDto.Username == null || getVoucherCodeDto.Email == null || getVoucherCodeDto.TotalAmount == null || getVoucherCodeDto.RemainingAmount == null){
+                return Ok(new {status = "error", message = "sorry missing information"});
+            }
+            var createCode = await _voucherRepo.GetAuoGenetaCodeAsync(getVoucherCodeDto);
+            if(createCode == null){
+                return Ok(new {status ="error",message = "sorry faild to get the code"});
+            }
+   
+            try{
+                         await _voucherRepo.SendEmailAsync(getVoucherCodeDto,createCode.Code);
+            }catch(Exception ex){
+                return Ok(new {status = "error",message = ex.Message});
+            }
+            return Ok(new {status = "success",message = "Email already send to customer"});
+        }
     
     }
 }

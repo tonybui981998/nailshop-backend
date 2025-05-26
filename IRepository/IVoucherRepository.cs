@@ -17,6 +17,8 @@ namespace backend.IRepository
 
         Task<Voucher>GetAuoGenetaCodeAsync(GetVoucherCodeDto getVoucherCodeDto);
 
+        Task SendEmailAsync (GetVoucherCodeDto getVoucherCodeDto, string code);
+
         
     }
 }

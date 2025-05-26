@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using backend.DataDto.VoucherDto;
 using backend.DataMapper;
@@ -69,7 +71,7 @@ namespace backend.Repository
      return Task.FromResult(code);
     }
 
-    public  async Task<Voucher> GetAuoGenetaCodeAsync(GetVoucherCodeDto getVoucherCodeDto)
+    public async Task<Voucher> GetAuoGenetaCodeAsync(GetVoucherCodeDto getVoucherCodeDto)
     {
       int maxattempt = 11;
       int attempt = 0;
@@ -88,5 +90,31 @@ namespace backend.Repository
       }
       throw new Exception ("Please double check db before contine");
   }
-}
+
+    public Task SendEmailAsync(GetVoucherCodeDto getVoucherCodeDto,string code)
+    {
+      var fromEmail = "anhbui981998@gmail.com";
+      var emailPassword = "suyb nntx krxr qeou";
+      var smtpClient = new SmtpClient("smtp.gmail.com"){
+        Port = 587,
+        Credentials = new NetworkCredential(fromEmail,emailPassword),
+        EnableSsl = true
+      };
+      var htmlBody = VoucherMapper.ConfirmVoucherEmail(getVoucherCodeDto,code);
+      var mailMessage = new MailMessage{
+        From = new MailAddress(fromEmail),
+        Subject = "Message from love nails Aivy beauty",
+        Body = htmlBody,
+        IsBodyHtml = true
+      } ;
+      mailMessage.To.Add(getVoucherCodeDto.Email);
+      try{
+        smtpClient.Send(mailMessage);
+        return Task.CompletedTask;
+       
+      }catch(Exception ex){
+        throw new Exception ("Sorry something wrong , please try again");
+      }
+    }
+  }
 }

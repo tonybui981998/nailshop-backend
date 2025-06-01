@@ -15,5 +15,7 @@ namespace backend.IRepository
 
         Task<Booking>IDExistAsync(int id);
         Task<Booking>UpdateBooking( ClientUpdateDto clientUpdateDto);
+
+        Task SendEmailAsync(BookingDto bookingDto);
     }
 }

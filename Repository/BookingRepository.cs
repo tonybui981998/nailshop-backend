@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using backend.DataDto.Bookingdto;
 using backend.DataMapper;
@@ -60,6 +62,32 @@ namespace backend.Repository
         return null;
       }
       return result;
+    }
+
+    public Task SendEmailAsync(BookingDto bookingDto)
+    {
+     var fromEmail = "anhbui981998@gmail.com";
+     var emailPassword = "suyb nntx krxr qeou";
+     var smtpClient = new SmtpClient("smtp.gmail.com"){
+      Port = 587,
+      Credentials = new NetworkCredential(fromEmail,emailPassword),
+      EnableSsl = true
+     };
+     var htmlBody = BookingMapper.ConfirmBookingEmail(bookingDto);
+     var mailMessage = new MailMessage{
+      From = new MailAddress(fromEmail),
+      Subject = "Message from love nauls Aivy beauty",
+      Body = htmlBody,
+      IsBodyHtml = true
+     };
+     mailMessage.To.Add(bookingDto.Email);
+     try{
+      smtpClient.Send(mailMessage);
+      return Task.CompletedTask;
+     }catch(Exception ex){
+      throw new Exception ("Send email failed , please try again later");
+     }
+  
     }
 
     public async Task<Booking> UpdateBooking( ClientUpdateDto clientUpdateDto)

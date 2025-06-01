@@ -26,10 +26,20 @@ namespace backend.Controllers
             if(bookingModel == null || bookingModel.bookingServices == null){
             return BadRequest("Sorry missing information");
             }
+            try{
             var makebooking = bookingModel.ToCreateBooking();
             var clientBooking = bookingModel.bookingServices.Select(x=>x.ToCreateClientBooking()).ToList();
             var createBooking = await _bookingRepo.CreateBookingAsync(makebooking,clientBooking);
-            return Ok("Create success");
+            try{
+                await _bookingRepo.SendEmailAsync(bookingModel);
+            }catch(Exception ex){
+                return Ok(new {status = "error", message = ex.Message});
+            }
+             
+            }catch(Exception ex){
+                return Ok(new {status= "error",message = ex.Message});
+            }
+           return Ok("Create success");   
         }
         [HttpGet("getBookingInfor")]
         public async Task<IActionResult>GetAllBookingData(){

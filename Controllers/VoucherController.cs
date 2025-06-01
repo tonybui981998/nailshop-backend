@@ -39,7 +39,7 @@ public async Task<ActionResult<VoucherRepondDto>> CheckVoucher([FromBody] Vouche
             }
    
             try{
-                         await _voucherRepo.SendEmailAsync(getVoucherCodeDto,createCode.Code);
+               await _voucherRepo.SendEmailAsync(getVoucherCodeDto,createCode.Code);
             }catch(Exception ex){
                 return Ok(new {status = "error",message = ex.Message});
             }

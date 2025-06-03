@@ -7,12 +7,16 @@ using backend.Models;
 
 namespace backend.IRepository
 {
-    public interface  IBookingConfirmRepository
+    public interface IBookingConfirmRepository
     {
-        Task <BookingConfirm> CreateBookingConfirmAsync(BookingConfirm bookingConfirm,List<ConfirmService> confirmServices);
-        Task <BookingConfirm>CheckExistAsync (int id);
+        Task<BookingConfirm> CreateBookingConfirmAsync(BookingConfirm bookingConfirm, List<ConfirmService> confirmServices);
+        Task<BookingConfirm> CheckExistAsync(int id);
 
         Task<List<BookingcheckConfirmDto>> GetAllBookingConfirmAsync();
+
+        Task SenBillConfirm(string CusName, decimal TotalPay ,string email);
+
+        Task SendDidnotComeNotice(string name , string email);
         
     }
 }

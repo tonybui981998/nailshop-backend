@@ -32,22 +32,35 @@ namespace backend.Controllers
             var createBookingConfirm = confirmcheckOutDto.BookingConfirmDto.TogetConfirmBooking();
             var confirmService = confirmcheckOutDto.BookingConfirmDto.Service.Select(x=>x.TogetConfirmService()).ToList();
             var creatBooking = await _bookingRepo.CreateBookingConfirmAsync(createBookingConfirm,confirmService);
-            if(confirmcheckOutDto.BookingConfirmDto?.VoucherCode !=null){
-                var check = await _voucherRepo.CheckVoucherAsync(confirmcheckOutDto.BookingConfirmDto.VoucherCode,confirmcheckOutDto.BookingConfirmDto.RemainingMoney);
-                if(check ==null){
+            
+            if (confirmcheckOutDto.BookingConfirmDto?.VoucherCode != null)
+            {
+                var check = await _voucherRepo.CheckVoucherAsync(confirmcheckOutDto.BookingConfirmDto.VoucherCode, confirmcheckOutDto.BookingConfirmDto.RemainingMoney);
+                if (check == null)
+                {
                     return BadRequest("sorry something wrong");
-                }else{
+                }
+                else
+                {
                     confirmcheckOutDto.VoucherUsageDto.BookingConfirmId = creatBooking.Id;
                     var createUsage = await _useRepo.CreateUseAsync(confirmcheckOutDto.VoucherUsageDto);
-                    if(createUsage == null){
+                    if (createUsage == null)
+                    {
                         return BadRequest("sorry create use failed");
-                    }else{
-                        return Ok("success");
                     }
-                
+                  
                 }
 
             }
+             if (creatBooking.BookingStatus == "confirmed")
+            {
+                await _bookingRepo.SenBillConfirm(creatBooking.CusName,creatBooking.TotalPay,confirmcheckOutDto.BookingConfirmDto.email);
+            }
+            else if (creatBooking.BookingStatus == "did-not-come")
+            {
+              await _bookingRepo.SendDidnotComeNotice(creatBooking.CusName,confirmcheckOutDto.BookingConfirmDto.email);
+            }
+
             return Ok("success");
         }
         [HttpGet("{id}")]

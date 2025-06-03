@@ -19,8 +19,10 @@ namespace backend.DataDto.BookingConfirm
             public string CusPhone { get; set; }
              public DateTime? BookingDate {get;set;}
                public TimeSpan? StartTime {get;set;}
+               
+               public string email { get; set; }
 
-          public TimeSpan? EndTime {get;set;}
+          public TimeSpan? EndTime { get; set; }
             public decimal RemainingMoney {get;set;}
           public List<ConfirmServiceDto> Service{get;set;} = new List<ConfirmServiceDto>();
     }

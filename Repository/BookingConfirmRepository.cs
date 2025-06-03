@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using backend.DataDto.BookingConfirm;
 using backend.DataMapper;
@@ -48,6 +50,58 @@ namespace backend.Repository
     {
  var result = await _context.BookingConfirms.Include(x=>x.ConfirmServices).Select(x=>x.ToGetAllConfirmBooking()).ToListAsync();
   return result;
+    }
+
+    public Task SenBillConfirm(string CusName, decimal TotalPay,string email)
+    {
+      var fromEmail = "anhbui981998@gmail.com";
+      var emailPassword = "suyb nntx krxr qeou";
+      var smtpClient = new SmtpClient("smtp.gmail.com"){
+        Port = 587,
+        Credentials = new NetworkCredential(fromEmail,emailPassword),
+        EnableSsl = true
+      };
+      var htmlBody = ConfirmBookingMapper.SendBillConfirm(CusName,TotalPay);
+      var mailMessage = new MailMessage{
+        From = new MailAddress(fromEmail),
+        Subject = "Message from love nails Aivy beauty",
+        Body = htmlBody,
+        IsBodyHtml = true
+      } ;
+      mailMessage.To.Add(email);
+      try{
+        smtpClient.Send(mailMessage);
+        return Task.CompletedTask;
+       
+      }catch(Exception ex){
+        throw new Exception ("Sorry something wrong , please try again");
+      }
+    }
+
+    public Task SendDidnotComeNotice(string name,string email)
+    {
+      var fromEmail = "anhbui981998@gmail.com";
+      var emailPassword = "suyb nntx krxr qeou";
+      var smtpClient = new SmtpClient("smtp.gmail.com"){
+        Port = 587,
+        Credentials = new NetworkCredential(fromEmail,emailPassword),
+        EnableSsl = true
+      };
+      var htmlBody = ConfirmBookingMapper.SendNoShowNotice(name);
+      var mailMessage = new MailMessage{
+        From = new MailAddress(fromEmail),
+        Subject = "Message from love nails Aivy beauty",
+        Body = htmlBody,
+        IsBodyHtml = true
+      } ;
+      mailMessage.To.Add(email);
+      try{
+        smtpClient.Send(mailMessage);
+        return Task.CompletedTask;
+       
+      }catch(Exception ex){
+        throw new Exception ("Sorry something wrong , please try again");
+      }
     }
   }
 }

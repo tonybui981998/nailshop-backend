@@ -84,6 +84,7 @@ namespace backend.Repository
         if(checkExist == null){
           var createVoucher =  getVoucherCodeDto.ToSaveVoucher(getCode);
          await _context.Vouchers.AddAsync(createVoucher);
+          await _context.SaveChangesAsync();
          return createVoucher;
         }
              attempt ++;

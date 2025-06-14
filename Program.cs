@@ -28,9 +28,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 builder.Services.AddScoped<IVoucherRepository,VoucherRepository>();
                 builder.Services.AddScoped<IVoucherUsageRepository,VoucherUsageRepository>();
                 builder.Services.AddScoped<IBookingConfirmRepository ,BookingConfirmRepository>();
+builder.Services.AddScoped<ICustomScheduleRepository, CustomScheduleRepository>();
 
      // cors
-     
+
 
 // Thêm CORS vào dịch vụ
 builder.Services.AddCors(options =>

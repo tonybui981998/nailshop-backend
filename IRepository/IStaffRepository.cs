@@ -9,8 +9,14 @@ namespace backend.IRepository
 {
     public interface IStaffRepository
     {
-        Task<List<Staff>>AllStaff();
-        Task<bool>StaffExist(int id);
-        Task<List<StaffAdminDto>>GetAllStaffAsync();
+        Task<List<Staff>> AllStaff();
+        Task<bool> StaffExist(int id);
+        Task<List<StaffAdminDto>> GetAllStaffAsync();
+
+        Task<Staff> CreateStaffAsync(AddNewStaffDto addNewStaffDto);
+
+        Task<Staff> UpdateStaffAsync(EditStaffInforDto editStaffInforDto);
+
+       
     }
 }

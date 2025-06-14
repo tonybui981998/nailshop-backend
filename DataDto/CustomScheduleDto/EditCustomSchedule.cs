@@ -5,19 +5,17 @@ using System.Threading.Tasks;
 
 namespace backend.DataDto.CustomScheduleDto
 {
-    public class CustomerScheduleDto
+    public class EditCustomSchedule
     {
-
-    public int Id { get; set;}
+          public int Id { get; set;}
     public DateTime Date { get; set; } 
 
-    public TimeSpan? StartTime { get; set; } 
+    public TimeSpan StartTime { get; set; } 
 
-    public TimeSpan? EndTime { get; set; }
+    public TimeSpan EndTime { get; set; }
 
     public bool IsDayOff { get; set; } = false; 
 
     public int StaffId { get; set; }
-   
     }
 }

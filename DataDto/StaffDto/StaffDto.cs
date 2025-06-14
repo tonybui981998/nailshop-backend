@@ -17,7 +17,7 @@ namespace backend.DataDto.StaffDto
 
         public string IsActive { get; set; }
     
-        public string Image { get; set; } 
+        
 
         public List<StaffScheduleDto> StaffScheduleDtos { get; set; } 
        

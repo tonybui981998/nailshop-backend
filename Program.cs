@@ -39,7 +39,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactFrontend",
         policy =>
         {
-            policy.WithOrigins("http://localhost:5173","http://localhost:5174", "https://nailshopfontend.vercel.app") 
+            policy.WithOrigins("http://localhost:5173","http://localhost:5174", "https://nailshopfontend.vercel.app","https://admindashboard-steel-one.vercel.app") 
                   .AllowAnyHeader()
                   .AllowAnyMethod()
                  .AllowCredentials();
